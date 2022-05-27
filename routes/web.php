@@ -19,14 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('post', \App\Http\Controllers\PostController::class);
 });
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [\App\Http\Controllers\GuestController::class, 'home']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
