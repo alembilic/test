@@ -57,11 +57,12 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function show(Post $post)
     {
-        //
+        $post->loadMissing('user');
+        return Inertia::render('ViewPost', ['post' => $post]);
     }
 
     /**
