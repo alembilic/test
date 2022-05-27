@@ -1,10 +1,10 @@
 <template>
-  <Head title="Create a post"/>
+  <Head title="View a post"/>
 
   <BreezeAuthenticatedLayout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Create a post
+        View a post
       </h2>
     </template>
 
