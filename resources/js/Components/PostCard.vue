@@ -1,5 +1,5 @@
 <template>
-  <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-4">
+  <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ post.title }}</h5>
     <p class="mb-6 font-normal text-gray-700 dark:text-gray-400">{{ post.description }}</p>
     <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">{{ post.user.name}} - <i>{{ post.created_at}}</i></p>

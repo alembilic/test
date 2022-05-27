@@ -19,10 +19,17 @@
     </div>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-8 grid grid-cols-2 gap-3">
-        <div v-for="(post, index) in posts.data" :key="index">
-          <PostCard :post="post"/>
+      <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg p-8">
+
+        <p class="text-2xl font-bold pb-6">Posts from our users</p>
+
+        <div class="grid grid-cols-2 gap-8">
+          <template v-for="(post, index) in posts.data" :key="index">
+            <PostCard :post="post"/>
+          </template>
         </div>
+
+        <Pagination :links="posts.links" class="mt-6 flex flex-row-reverse"/>
       </div>
     </div>
   </div>
@@ -30,7 +37,8 @@
 
 <script setup>
 import {Head, Link} from '@inertiajs/inertia-vue3';
-import PostCard from '@/Components/PostCard.vue'
+import PostCard from '@/Components/PostCard'
+import Pagination from '@/Components/Pagination'
 
 defineProps({
   canLogin: Boolean,
