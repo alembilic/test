@@ -15,6 +15,10 @@ use Inertia\Inertia;
 |
 */
 
+Route::middleware('auth')->group(function () {
+    Route::resource('post', \App\Http\Controllers\PostController::class);
+});
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
