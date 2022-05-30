@@ -21,8 +21,7 @@
     </div>
 
     <div class="flex flex-wrap justify-between">
-      <div class="w-full md:w-2/3">
-        <span class="text-sm font-light text-gray-600 dark:text-gray-400">{{ post.created_at }}</span>
+      <div class="w-full md:w-2/3 md:pr-10">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
           {{ post.title }}
         </h5>
@@ -34,6 +33,7 @@
             <span class="text-gray-700 dark:text-gray-200 mr-2">Written by:</span>
             <span class="font-bold text-gray-700 dark:text-gray-200">{{ post.user.name }}</span>
           </div>
+          <i class="text-sm font-light text-gray-600 dark:text-gray-400 float-right">{{ post.created_at }}</i>
         </div>
       </div>
       <div class="w-full md:w-1/3 mt-8 md:mt-0">
