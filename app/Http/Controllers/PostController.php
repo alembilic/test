@@ -72,7 +72,7 @@ class PostController extends Controller
      */
     public function show(Request $request, Post $post)
     {
-        $post->loadMissing('user');
+        $post->loadMissing(['user', 'comment.user']);
         $can = [
             'edit' => $request->user()->can('update', $post),
             'destroy' => Gate::forUser(auth()->user())->allows('delete', $post),
@@ -108,6 +108,8 @@ class PostController extends Controller
 
         $post->update($new_post);
 
+        Session::flash('alertSuccess', 'Successfully updated a post!');
+
         return redirect()->to(route('post.show', $post->id));
     }
 
@@ -120,6 +122,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->deleteOrFail();
+
+        Session::flash('alertSuccess', 'Successfully deleted a post!');
 
         return redirect()->to(route('dashboard'));
     }

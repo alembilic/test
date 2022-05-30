@@ -17,6 +17,7 @@ use Inertia\Inertia;
 
 Route::middleware('auth')->group(function () {
     Route::resource('post', \App\Http\Controllers\PostController::class);
+    Route::post('comment', [\App\Http\Controllers\CommentController::class, 'store'])->name('comment.store');
 });
 
 Route::get('/', [\App\Http\Controllers\GuestController::class, 'home']);

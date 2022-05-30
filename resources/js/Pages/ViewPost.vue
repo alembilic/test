@@ -14,7 +14,7 @@
         Edit
       </Link>
 
-      <Link v-if="can.destroy" :href="route('post.destroy', post.id)" method="delete"
+      <Link v-if="can.destroy" :href="route('post.destroy', post.id)" method="delete" as="button"
             class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4">
         Delete
       </Link>
@@ -41,10 +41,17 @@
           Comments
         </h5>
 
-        <form>
+        <div v-for="comment in post.comment" :key="comment.id">
+          <div class="font-semibold">{{ comment.user.name }}<i class="font-normal text-sm ml-4">{{comment.created_at}}</i></div>
+          <div class="ml-6">{{ comment.content }}</div>
+        </div>
+
+        <BreezeValidationErrors class="mb-4"/>
+
+        <form @submit.prevent="submit">
           <textarea
               v-model="form.comment"
-              class="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
+              class="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1 mt-6"
               name="comment"
               placeholder="Comment on this post...">
           </textarea>
@@ -63,18 +70,20 @@
 import {Head, Link, useForm} from '@inertiajs/inertia-vue3';
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated';
 import BreezeButton from '@/Components/Button.vue';
+import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 
-defineProps({
+const props = defineProps({
   post: Object,
   can: Object,
 })
 
 const form = useForm({
-  comment: ''
+  comment: '',
+  post_id: props.post.id
 });
 
 const submit = () => {
-  form.post(route('post.update', props.post.id), {
+  form.post(route('comment.store'), {
     preserveScroll: true,
     onSuccess: () => form.reset(),
   })
