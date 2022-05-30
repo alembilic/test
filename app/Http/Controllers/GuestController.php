@@ -10,7 +10,7 @@ use Inertia\Inertia;
 class GuestController extends Controller
 {
     public function home(){
-        $posts = Post::with('user')->paginate(2);
+        $posts = Post::with('user')->withCount('comment')->paginate(2);
 
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),

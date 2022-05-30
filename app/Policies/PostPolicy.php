@@ -66,7 +66,8 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        if ($user->id === $post->user_id) return true;
+        $post = Post::withCount('comment')->where('id', $post->id)->first();
+        if ($user->id === $post->user_id and $post->comment_count === 0) return true;
         return false;
     }
 }
